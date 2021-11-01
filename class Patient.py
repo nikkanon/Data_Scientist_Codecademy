@@ -28,6 +28,11 @@ class Patient:
     else:
       print("{name} has {num_of_children} children.".format(name = self.name, num_of_children = self.num_of_children))
       self.estimated_insurance_costs()
+
+  def patient_profile(self):
+    self.patient_information = {self.name : [self.name, self.age, self.sex, self.bmi, self.num_of_children, self.smoker]}
+    return self.patient_information
+
   
 patient1 = Patient("John Doe", 25, 1, 22.2, 0, 0)
 print(patient1.name)
@@ -39,3 +44,4 @@ print(patient1.smoker)
 patient1.estimated_insurance_costs()
 patient1.update_age(26)
 patient1.update_num_children(1)
+print(patient1.patient_profile())
