@@ -13,9 +13,13 @@ class Patient:
     print("{name}'s estimated insurance costs is {estimated_cost} dollars.".format(name = self.name, estimated_cost = self.estimated_cost))
   
   def update_age(self, new_age):
-    self.age = new_age
-    print("{name} is now {age} years old.".format(name = self.name, age = self.age))
-    self.estimated_insurance_costs()
+    try:
+      self.age = int(new_age)
+      print("{name} is now {age} years old.".format(name = self.name, age = self.age))
+      self.estimated_insurance_costs()
+    except ValueError:
+        print ("Non numeric value")
+   
   
   def update_num_children(self, new_num_children):
     self.num_of_children = new_num_children
@@ -35,13 +39,13 @@ class Patient:
 
   
 patient1 = Patient("John Doe", 25, 1, 22.2, 0, 0)
-print(patient1.name)
-print(patient1.age)
-print(patient1.sex)
-print(patient1.bmi)
-print(patient1.num_of_children)
-print(patient1.smoker)
-patient1.estimated_insurance_costs()
-patient1.update_age(26)
-patient1.update_num_children(1)
-print(patient1.patient_profile())
+#print(patient1.name)
+#print(patient1.age)
+#print(patient1.sex)
+#print(patient1.bmi)
+#print(patient1.num_of_children)
+#print(patient1.smoker)
+#patient1.estimated_insurance_costs()
+patient1.update_age("hej")
+#patient1.update_num_children(1)
+#print(patient1.patient_profile())
