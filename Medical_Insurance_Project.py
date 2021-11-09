@@ -56,4 +56,4 @@ with open("insurance.csv", newline = "") as insurance_csv: #use csv to import da
 insurance_average_age = average_age(age_data_grosslist)
 print("The average age in the U.S. Medical Insurance data set is {insurance_average_age} years".format(insurance_average_age = insurance_average_age))
 
-#Second task from scope: Analyze where a majority of the individuals are from.
+#Second task from scope: Analyze where a majority of the individuals are from. We can use our region_data_grosslist for that
