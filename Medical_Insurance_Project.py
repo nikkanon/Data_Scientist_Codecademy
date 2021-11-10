@@ -61,6 +61,15 @@ def average_cost_non_smoker(smoker_list, charges_list): #returns average cost fo
       continue
   return total_cost_nonsmoker/amount_of_non_smokers
 
+def age_list_children(age_list, children_list):
+  age_children_list = []
+  for i in range(len(age_list)):
+    if int(children_list[i]) > 0:
+      age_children_list.append(int(age_list[i]))
+    else:
+      continue
+  return age_children_list
+
 #use csv to import data using DictReader then iterate through csv-file and add data into organized grosslists per column to allow combination of data for analytics to solve our project scope.
 with open("insurance.csv", newline = "") as insurance_csv: 
   insurance_reader = csv.DictReader(insurance_csv)
@@ -95,7 +104,8 @@ insurance_average_age = average_age(age_data_grosslist)
 print("The average age in the U.S. Medical Insurance data set is {insurance_average_age} years.".format(insurance_average_age = insurance_average_age))
 
 #Second task from scope: Analyze where a majority of the individuals are from. We can use our region_data_grosslist for that.
-#Solution idea/discussion: build a function that builds a dictionary key = region, value = occurance in region_data_grosslist. Use dictionary to identify most popular place of origin - and dictionary can be used later for other analysis.
+#Solution idea/discussion: build a function that builds a dictionary key = region, value = occurance in region_data_grosslist. Use dictionary to identify most popular place of origin, we should build a function for 
+#that as well - and a dictionary can be used later for other analysis.
 region_occur_dict = occur_origin_dict(region_data_grosslist)
 #print(region_occur_dict)
 
@@ -111,8 +121,18 @@ average_cost_smoking = round(average_cost_smoker(smoker_data_grosslist, charges_
 #print(average_cost_smoking)
 average_cost_non_smoking = round(average_cost_non_smoker(smoker_data_grosslist, charges_data_grosslist))
 #print(average_cost_non_smoking)
-print("Looking into average cost difference in the U.S. Medical Insurance data set between a non-smoker and a smoker we can see that a smoker has on average a additional cost of {average_cost_diff} dollars.".format(average_cost_diff = (average_cost_smoking-average_cost_non_smoking)))
+print("Looking into the average cost difference in the U.S. Medical Insurance data set between a non-smoker and a smoker we can see that a smoker has on average a additional cost of {average_cost_diff} dollars.".format(average_cost_diff = (average_cost_smoking-average_cost_non_smoking)))
 
 #Fourth and last task in the scope is to figure out what the average age is for someone who has at least one child in this dataset.
-#Solution idea/discussions: build function that returns the average age of someone having atleast one child; the function builds up new list of ages for people having children which we then can use in order
-#to calculate average age. Input parameters to this function will be children_data_grosslist and age_data_grosslist
+#Solution idea/discussions: build function that returns the average age of someone having atleast one child; the function builds up new list of ages for people having children input parameters to this function 
+#will be children_data_grosslist and age_data_grosslist and then we reuse our average_age function from the first task in the scope.
+
+age_child_list = age_list_children(age_data_grosslist, children_data_grosslist)
+#print(age_child_list)
+average_age_children = average_age(age_child_list) #reuse function from first task in scope
+print("Average age in the U.S. Medical Insurance data set for people having atleast one child is {average_age_child} years old.".format(average_age_child = average_age_children))
+
+#Reflections:
+#functions above could be put into a seperate class file; however considering the scope and simplicity of the data in the CSV
+#I am happy with the solution above.
+
