@@ -3,7 +3,7 @@
 #Analyze where a majority of the individuals are from.
 #Look at the different costs between smokers vs. non-smokers.
 #Figure out what the average age is for someone who has at least one child in this dataset.
-#Data logic from CSV File
+#Data structure from CSV File
 #age,sex,bmi,children,smoker,region,charges
 #19,female,27.9,0,yes,southwest,16884.924
 #18,male,33.77,1,no,southeast,1725.5523
@@ -92,7 +92,7 @@ with open("insurance.csv", newline = "") as insurance_csv:
 #Solution idea: build the average_age function above that returns average age. Then do a print statement.
 
 insurance_average_age = average_age(age_data_grosslist)
-print("The average age in the U.S. Medical Insurance data set is {insurance_average_age} years".format(insurance_average_age = insurance_average_age))
+print("The average age in the U.S. Medical Insurance data set is {insurance_average_age} years.".format(insurance_average_age = insurance_average_age))
 
 #Second task from scope: Analyze where a majority of the individuals are from. We can use our region_data_grosslist for that.
 #Solution idea/discussion: build a function that builds a dictionary key = region, value = occurance in region_data_grosslist. Use dictionary to identify most popular place of origin - and dictionary can be used later for other analysis.
@@ -100,7 +100,7 @@ region_occur_dict = occur_origin_dict(region_data_grosslist)
 #print(region_occur_dict)
 
 most_popular_region = most_popular_region(region_occur_dict)
-print("Majority of the individuals are from {most_popular_region} region a total of {amount_of_ppl} people in the data set".format(most_popular_region = most_popular_region, amount_of_ppl = region_occur_dict[most_popular_region]))
+print("Majority of the individuals are from {most_popular_region} region; a total of {amount_of_ppl} people in the U.S. Medical Insurance data set.".format(most_popular_region = most_popular_region, amount_of_ppl = region_occur_dict[most_popular_region]))
 
 #Third task from scope: Look at the different costs between smokers vs. non-smokers.
 #Solution idea/discussions: Hard to isolate the cost impact for only smoking - the cost per individual is aggregated result of all parameters. However a indication can be given by doing a average difference value accross data set
@@ -111,6 +111,8 @@ average_cost_smoking = round(average_cost_smoker(smoker_data_grosslist, charges_
 #print(average_cost_smoking)
 average_cost_non_smoking = round(average_cost_non_smoker(smoker_data_grosslist, charges_data_grosslist))
 #print(average_cost_non_smoking)
+print("Looking into average cost difference in the U.S. Medical Insurance data set between a non-smoker and a smoker we can see that a smoker has on average a additional cost of {average_cost_diff} dollars.".format(average_cost_diff = (average_cost_smoking-average_cost_non_smoking)))
 
-
-
+#Fourth and last task in the scope is to figure out what the average age is for someone who has at least one child in this dataset.
+#Solution idea/discussions: build function that returns the average age of someone having atleast one child; the function builds up new list of ages for people having children which we then can use in order
+#to calculate average age. Input parameters to this function will be children_data_grosslist and age_data_grosslist
