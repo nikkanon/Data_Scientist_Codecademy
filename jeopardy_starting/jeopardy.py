@@ -16,7 +16,7 @@ pd.set_option('display.max_colwidth', -1)
 #Test your function by printing out the column containing the question of each row of the dataset.
 
 jeopardy_df = pd.read_csv('jeopardy.csv')
-print(jeopardy_df.count())
+#print(jeopardy_df.count())
 #print(jeopardy_df.head())
 dict_columns = {'Show Number': 'show_number', ' Air Date': 'air_date', ' Round': 'round', ' Category': 'category', ' Value': 'value', ' Question': 'question', ' Answer': 'answer'}
 jeopardy_df.rename(columns=dict_columns, inplace=True)
