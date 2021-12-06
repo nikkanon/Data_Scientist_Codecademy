@@ -8,6 +8,14 @@
 import pandas as pd
 pd.set_option('display.max_colwidth', None)
 
+#clean up the datafram
+jeopardy_df = pd.read_csv('jeopardy.csv')
+#print(jeopardy_df.count())
+#print(jeopardy_df.head())
+dict_columns = {'Show Number': 'show_number', ' Air Date': 'air_date', ' Round': 'round', ' Category': 'category', ' Value': 'value', ' Question': 'question', ' Answer': 'answer'}
+jeopardy_df.rename(columns=dict_columns, inplace=True)
+print(jeopardy_df.head())
+
 
 #Write a function that filters the dataset for questions that contains all of the words in a list of words. For example, when the list ["King", "England"] was passed to our function, 
 #the function returned a DataFrame of 152 rows. Every row had the strings "King" and "England" somewhere in its " Question".
@@ -15,13 +23,4 @@ pd.set_option('display.max_colwidth', None)
 #The dataset used on Codecademy is only a fraction of the dataset so you won’t find as many rows.
 #Test your function by printing out the column containing the question of each row of the dataset.
 
-
-def questions_contain_word(wordlist): #a function printing all questions in the dataframe that contains the word/words in the list it takes
-	pass
-
-jeopardy_df = pd.read_csv('jeopardy.csv')
-#print(jeopardy_df.count())
-#print(jeopardy_df.head())
-dict_columns = {'Show Number': 'show_number', ' Air Date': 'air_date', ' Round': 'round', ' Category': 'category', ' Value': 'value', ' Question': 'question', ' Answer': 'answer'}
-jeopardy_df.rename(columns=dict_columns, inplace=True)
-print(jeopardy_df.head())
+#do lamba function that takes a list of words and check if they exist in sentence - use all()-function?
