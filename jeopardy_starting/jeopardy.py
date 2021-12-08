@@ -29,3 +29,10 @@ words_list = ["King", "England"]
 words_in_quest_series = jeopardy_df.question.apply(lambda question: question if all(word in question for word in words_list) else None)
 remove_none_words_in_question = words_in_quest_series.dropna()
 print(remove_none_words_in_question)
+
+#Test your original function with a few different sets of words to try to find some ways your function breaks. Edit your function so it is more robust.
+#For example, think about capitalization. We probably want to find questions that contain the word "King" or "king".
+#You may also want to check to make sure you don’t find rows that contain substrings of your given words. For example, our function found a question that 
+#didn’t contain the word "king", however it did contain the word "viking" — it found the "king" inside "viking". Note that this also comes with some 
+#drawbacks — you would no longer find questions that contained words like "England's".
+
