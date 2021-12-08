@@ -14,7 +14,7 @@ jeopardy_df = pd.read_csv('jeopardy.csv')
 #print(jeopardy_df.head())
 dict_columns = {'Show Number': 'show_number', ' Air Date': 'air_date', ' Round': 'round', ' Category': 'category', ' Value': 'value', ' Question': 'question', ' Answer': 'answer'}
 jeopardy_df.rename(columns=dict_columns, inplace=True)
-print(jeopardy_df.head())
+#print(jeopardy_df.head())
 
 
 #Write a function that filters the dataset for questions that contains all of the words in a list of words. For example, when the list ["King", "England"] was passed to our function, 
@@ -24,3 +24,8 @@ print(jeopardy_df.head())
 #Test your function by printing out the column containing the question of each row of the dataset.
 
 #do lamba function that takes a list of words and check if they exist in sentence - use all()-function?
+
+words_list = ["King", "England"]
+words_in_quest_series = jeopardy_df.question.apply(lambda question: question if all(word in question for word in words_list) else None)
+remove_none_words_in_question = words_in_quest_series.dropna()
+print(remove_none_words_in_question)
