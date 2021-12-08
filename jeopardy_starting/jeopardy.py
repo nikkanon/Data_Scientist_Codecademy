@@ -23,12 +23,12 @@ jeopardy_df.rename(columns=dict_columns, inplace=True)
 #The dataset used on Codecademy is only a fraction of the dataset so you won’t find as many rows.
 #Test your function by printing out the column containing the question of each row of the dataset.
 
-#do lamba function that takes a list of words and check if they exist in sentence - use all()-function?
+#Solution idea: do lamba function that takes a list of words and check if they exist in sentence - use all()-function in combition with word in question for word in list
 
 words_list = ["King", "England"]
 words_in_quest_series = jeopardy_df.question.apply(lambda question: question if all(word in question for word in words_list) else None)
 remove_none_words_in_question = words_in_quest_series.dropna()
-print(remove_none_words_in_question)
+print(remove_none_words_in_question.count())
 
 #Test your original function with a few different sets of words to try to find some ways your function breaks. Edit your function so it is more robust.
 #For example, think about capitalization. We probably want to find questions that contain the word "King" or "king".
@@ -36,3 +36,10 @@ print(remove_none_words_in_question)
 #didn’t contain the word "king", however it did contain the word "viking" — it found the "king" inside "viking". Note that this also comes with some 
 #drawbacks — you would no longer find questions that contained words like "England's".
 
+#Solution idea: improved function to also capture lower and upper case scenarios - idea; transform the questions in the lambda fuction to lower case and change input list to 
+#lower case words
+
+words_list_2 = ["king", "england"]
+words_in_quest_series_2 = jeopardy_df.question.apply(lambda question: question if all(word in question.lower() for word in words_list_2) else None)
+remove_none_words_in_question_2 = words_in_quest_series_2.dropna()
+print(remove_none_words_in_question_2.count())
