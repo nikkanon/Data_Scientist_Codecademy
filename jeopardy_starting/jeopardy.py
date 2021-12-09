@@ -39,7 +39,7 @@ remove_none_words_in_question = words_in_quest_series.dropna()
 #Solution idea: improved function to also capture lower and upper case scenarios - idea; transform the questions in the lambda fuction to lower case and change input list to 
 #lower case words
 
-words_list_2 = ["king", "england"]
+words_list_2 = ["king", "england"] #Filter input
 words_in_quest_series_2 = jeopardy_df.question.apply(lambda question: question if all(word in question.lower() for word in words_list_2) else None)
 remove_none_words_in_question_2 = words_in_quest_series_2.dropna()
 #print(remove_none_words_in_question_2.count())
@@ -57,10 +57,17 @@ jeopardy_df['float_value'] = jeopardy_df.value.apply(lambda value: float(re.sub(
 
 #Solution idea second question: filter out the rows which have king in the question. Then after that calculate mean of float_value column
 filtered_jeopoday_df = jeopardy_df[(jeopardy_df.question == words_in_quest_series_2)]
-mean_value_filtered = filtered_jeopoday_df.float_value.mean()
-print(mean_value_filtered)
+mean_value_filtered = round(filtered_jeopoday_df.float_value.mean(), 1)
+print("mean value for question containing King is {mean_value} dollar!".format(mean_value=mean_value_filtered))
 
 
+#Write a function that returns the count of the unique answers to all of the questions in a dataset. For example, after filtering the entire dataset to only 
+#questions containing the word "King", we could then find all of the unique answers to those questions. The answer “Henry VIII” appeared 3 times and was the most common answer.
+#Solutions idea: utilize pandas nunique() function to find out number of unique answers"
+#print(filtered_jeopoday_df.head())
+unique_answers = filtered_jeopoday_df.answer.nunique()
+print(filtered_jeopoday_df.count())
+print(unique_answers)
 
 
 
