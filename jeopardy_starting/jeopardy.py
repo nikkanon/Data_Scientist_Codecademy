@@ -50,12 +50,16 @@ remove_none_words_in_question_2 = words_in_quest_series_2.dropna()
 #Now that you can filter the dataset of question, use your new column that contains the float values of each question to find the “difficulty” 
 #of certain topics. For example, what is the average value of questions that contain the word "King"?
 #Make sure to use the dataset that contains the float values as the dataset you use in your filtering function.
-#Solution idea: create new column 'float_value' by applying a lambda function utilizing RegEx and the \D to return match where the string DOES NOT contain digits. Weak point; RegEx most likely not fastest compute.
+#Solution idea first question: create new column 'float_value' by applying a lambda function utilizing RegEx and the \D to return match where the string DOES NOT contain digits. Weak point; RegEx most likely not fastest compute.
 #seems to be 'None' values as well in the data hence casting float does not work directly. Need to add if statement handling those Final Jeopardy! questions setting their value to 0.
 jeopardy_df['float_value'] = jeopardy_df.value.apply(lambda value: float(re.sub('\D', '', value)) if value != "None" else 0)
 #print(jeopardy_df.head())
+
+#Solution idea second question: filter out the rows which have king in the question. Then after that calculate mean of float_value column
 filtered_jeopoday_df = jeopardy_df[(jeopardy_df.question == words_in_quest_series_2)]
-print(filtered_jeopoday_df.head())
+mean_value_filtered = filtered_jeopoday_df.float_value.mean()
+print(mean_value_filtered)
+
 
 
 
