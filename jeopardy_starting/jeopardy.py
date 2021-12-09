@@ -25,7 +25,7 @@ jeopardy_df.rename(columns=dict_columns, inplace=True)
 
 #Solution idea: do lamba function that takes a list of words and check if they exist in sentence - use all()-function in combition with word in question for word in list
 
-words_list = ["King", "England"]
+words_list = ["King", "England"] #old filter, not used later in the solutions; first iteration below you find the final version
 words_in_quest_series = jeopardy_df.question.apply(lambda question: question if all(word in question for word in words_list) else None)
 remove_none_words_in_question = words_in_quest_series.dropna()
 #print(remove_none_words_in_question.count())
@@ -39,7 +39,7 @@ remove_none_words_in_question = words_in_quest_series.dropna()
 #Solution idea: improved function to also capture lower and upper case scenarios - idea; transform the questions in the lambda fuction to lower case and change input list to 
 #lower case words
 
-words_list_2 = ["king", "england"] #Filter input
+words_list_2 = ["king", "england"] #Active filter input
 words_in_quest_series_2 = jeopardy_df.question.apply(lambda question: question if all(word in question.lower() for word in words_list_2) else None)
 remove_none_words_in_question_2 = words_in_quest_series_2.dropna()
 #print(remove_none_words_in_question_2.count())
@@ -80,6 +80,8 @@ print(frequency_unique_answers)
 #Build a system to quiz yourself. Grab random questions, and use the input function to get a response from the user. Check to see if that response was right or wrong. 
 #Note that you can’t do this on the Codecademy platform — to do this, download the data, and write and run the code on your own computer!
 
-#Exploration question: 
+#Exploration question: Is there a connection between the round and the category? Are you more likely to find certain categories, like "Literature" in Single Jeopardy or Double Jeopardy?
+
+
 
 
