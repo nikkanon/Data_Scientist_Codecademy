@@ -63,11 +63,23 @@ print("mean value for question containing King is {mean_value} dollar!".format(m
 
 #Write a function that returns the count of the unique answers to all of the questions in a dataset. For example, after filtering the entire dataset to only 
 #questions containing the word "King", we could then find all of the unique answers to those questions. The answer “Henry VIII” appeared 3 times and was the most common answer.
-#Solutions idea: utilize pandas nunique() function to find out number of unique answers"
+#Solutions idea: utilize pandas nunique() function to find out number of unique answers and then apply pandas value_counts() to find frequency
 #print(filtered_jeopoday_df.head())
 unique_answers = filtered_jeopoday_df.answer.nunique()
-print(filtered_jeopoday_df.count())
-print(unique_answers)
+#print(filtered_jeopoday_df.count())
+print("number of unique answers for questions containing the word King is {unique}".format(unique=unique_answers))
 
+frequency_unique_answers = filtered_jeopoday_df.answer.value_counts(ascending=True)
+print("below is list of number of times a certain answer is correct to a question containing the word King")
+print(frequency_unique_answers)
+
+#Explore from here! This is an incredibly rich dataset, and there are so many interesting things to discover. There are a few columns that we haven’t even started looking at yet. 
+#Here are some ideas on ways to continue working with this data:
+#Investigate the ways in which questions change over time by filtering by the date. How many questions from the 90s use the word "Computer" compared to questions from the 2000s?
+#Is there a connection between the round and the category? Are you more likely to find certain categories, like "Literature" in Single Jeopardy or Double Jeopardy?
+#Build a system to quiz yourself. Grab random questions, and use the input function to get a response from the user. Check to see if that response was right or wrong. 
+#Note that you can’t do this on the Codecademy platform — to do this, download the data, and write and run the code on your own computer!
+
+#Exploration question: 
 
 
