@@ -4,7 +4,7 @@
 #as the datasets you normally find on Codecademy. More specifically, there’s something odd about the column names. After you figure out the problem with the column names, you may want to rename them 
 #to make your life easier the rest of the project.
 #In order to disply the full contents of a column, we’ve added this line of code to the top of your file:
-
+import re
 import pandas as pd
 pd.set_option('display.max_colwidth', None)
 
@@ -28,7 +28,7 @@ jeopardy_df.rename(columns=dict_columns, inplace=True)
 words_list = ["King", "England"]
 words_in_quest_series = jeopardy_df.question.apply(lambda question: question if all(word in question for word in words_list) else None)
 remove_none_words_in_question = words_in_quest_series.dropna()
-print(remove_none_words_in_question.count())
+#print(remove_none_words_in_question.count())
 
 #Test your original function with a few different sets of words to try to find some ways your function breaks. Edit your function so it is more robust.
 #For example, think about capitalization. We probably want to find questions that contain the word "King" or "king".
@@ -42,4 +42,21 @@ print(remove_none_words_in_question.count())
 words_list_2 = ["king", "england"]
 words_in_quest_series_2 = jeopardy_df.question.apply(lambda question: question if all(word in question.lower() for word in words_list_2) else None)
 remove_none_words_in_question_2 = words_in_quest_series_2.dropna()
-print(remove_none_words_in_question_2.count())
+#print(remove_none_words_in_question_2.count())
+
+
+#We may want to eventually compute aggregate statistics, like .mean() on the " Value" column. But right now, the values 
+#in that column are strings. Convert the " Value" column to floats. If you’d like to, you can create a new column with the float values.
+#Now that you can filter the dataset of question, use your new column that contains the float values of each question to find the “difficulty” 
+#of certain topics. For example, what is the average value of questions that contain the word "King"?
+#Make sure to use the dataset that contains the float values as the dataset you use in your filtering function.
+#Solution idea: create new column 'float_value' by applying a lambda function utilizing RegEx and the \D to return match where the string DOES NOT contain digits. Weak point; RegEx most likely not fastest compute.
+#seems to be 'None' values as well in the data hence casting float does not work directly. Need to add if statement handling those Final Jeopardy! questions setting their value to 0.
+jeopardy_df['float_value'] = jeopardy_df.value.apply(lambda value: float(re.sub('\D', '', value)) if value != "None" else 0)
+#print(jeopardy_df.head())
+filtered_jeopoday_df = jeopardy_df[(jeopardy_df.question == words_in_quest_series_2)]
+print(filtered_jeopoday_df.head())
+
+
+
+
