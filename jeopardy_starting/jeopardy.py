@@ -83,9 +83,9 @@ print(frequency_unique_answers)
 #Exploration question: Is there a connection between the round and the category? Are you more likely to find certain categories, like "Literature" in Single Jeopardy or Double Jeopardy?
 #Solution idea: condition selection of dataframe
 filtered_jeopoday_df_2 = jeopardy_df[(jeopardy_df.round_type == 'Jeopardy!') & (jeopardy_df.category == 'HISTORY')]
-print("The number of round_type Jeopardy! and category History are {number}".format(number=filtered_jeopoday_df_2.show_number.count()))
+print("The number of round type Jeopardy! and category History are {number}".format(number=filtered_jeopoday_df_2.show_number.count()))
 filtered_jeopoday_df_3 = jeopardy_df[(jeopardy_df.round_type == 'Double Jeopardy!') & (jeopardy_df.category == 'HISTORY')]
-print("The number of round_type Double Jeopardy! and category History are {number}".format(number=filtered_jeopoday_df_3.show_number.count()))
+print("The number of round type Double Jeopardy! and category History are {number}".format(number=filtered_jeopoday_df_3.show_number.count()))
 
 
 
