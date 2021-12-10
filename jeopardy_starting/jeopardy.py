@@ -58,7 +58,7 @@ jeopardy_df['float_value'] = jeopardy_df.value.apply(lambda value: float(re.sub(
 #Solution idea second question: filter out the rows which have king in the question. Then after that calculate mean of float_value column
 filtered_jeopoday_df = jeopardy_df[(jeopardy_df.question == words_in_quest_series_2)]
 mean_value_filtered = round(filtered_jeopoday_df.float_value.mean(), 1)
-print("mean value for question containing King is {mean_value} dollar!".format(mean_value=mean_value_filtered))
+print("mean value for questions containing King is {mean_value} dollar!".format(mean_value=mean_value_filtered))
 
 
 #Write a function that returns the count of the unique answers to all of the questions in a dataset. For example, after filtering the entire dataset to only 
